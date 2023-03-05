@@ -1,0 +1,26 @@
+<button class="btn btn-info" type="button" (click)="refreshInfo()">
+  Refresh
+</button>
+
+<h2 *ngIf="isRefreshing"><em>Refreshing...</em></h2>
+<div *ngIf="!isRefreshing">
+  <h2>Free parking spaces: {{ freeParkingSpaces }}</h2>
+  <table class="table table-striped" aria-labelledby="tableLabel">
+    <thead>
+      <tr>
+        <th>Licance Plate</th>
+        <th>Entry</th>
+        <th>Accumulated Charge</th>
+        <th>Discount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let forecast of parkedVehicles">
+        <td>{{ forecast.licensePlate }}</td>
+        <td>{{ forecast.dateTimeOfEntry |  date:'medium' }}</td>
+        <td>{{ forecast.currentAccumulatedCharge | currency:'BGN':'symbol':'.2-2' }}</td>
+        <td>{{ forecast.calculatedDiscount | currency:'BGN':'symbol':'.2-2'  }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
