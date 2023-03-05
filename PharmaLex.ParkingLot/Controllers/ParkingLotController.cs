@@ -1,5 +1,4 @@
 ﻿using Core.Models;
-using Core.Models.Exceptions;
 using Core.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,80 +20,36 @@ namespace ParkingLotService.Controllers
         [HttpGet(nameof(GetAvailableSpaces))]
         public IActionResult GetAvailableSpaces()
         {
-            try
-            {
-                var availableSpaces = _parkingService.GetAvailableSpaces();
-                return Ok(availableSpaces);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            return Ok(_parkingService.GetAvailableSpaces());
         }
 
         [HttpGet(nameof(GetInfoAllParked))]
         public IActionResult GetInfoAllParked()
         {
-            try
-            {
-                var allParkedInfo = _parkingService.GetInfoAllParked();
-                return Ok(allParkedInfo);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            return Ok(_parkingService.GetInfoAllParked());
         }
 
         [HttpGet(nameof(GetCurrentAccumulatedCharge))]
         public IActionResult GetCurrentAccumulatedCharge(string licensePlate)
         {
-            try
-            {
-                (decimal charges, decimal discount) = _parkingService.GetCurrentAccumulatedCharge(licensePlate);
-
-                return Ok(charges - discount);
-            }
-            catch (Exception ex) when (ex is VehicleIsNotParkedException)
-            {
-                return BadRequest(ex.Message);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            var result = _parkingService.GetCurrentAccumulatedCharge(licensePlate);
+            return result.IsSuccess
+                ? Ok(result.Value.charges - result.Value.discount)
+                : BadRequest(result.Error);
         }
 
         [HttpPost(nameof(Park))]
         public IActionResult Park([FromBody] ParkNewVehicleDto vehicle)
         {
-            try
-            {
-                _parkingService.Park(vehicle);
-                return Ok();
-            }
-            catch (Exception ex) when (ex is VehicleIsParkedException || ex is NotEnoughtSpaceForVehicleException)
-            {
-                return BadRequest(ex.Message);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            var result = _parkingService.Park(vehicle);
+            return result.IsSuccess ? Ok() : BadRequest(result.Error);
         }
 
         [HttpPost(nameof(Exit))]
         public IActionResult Exit([FromBody] string licensePlate)
         {
-            try
-            {
-                var charges = _parkingService.Exit(licensePlate);
-                return Ok(charges);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            var result = _parkingService.Exit(licensePlate);
+            return result.IsSuccess ? Ok(result.Value) : BadRequest(result.Error);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Core.Models;
+using Core.Shared;
 
 namespace Core.Services
 {
@@ -6,8 +7,8 @@ namespace Core.Services
     {
         int GetAvailableSpaces();
         IEnumerable<ParkedInfoDto> GetInfoAllParked();
-        (decimal charges, decimal discount) GetCurrentAccumulatedCharge(string licensePlate);
-        void Park(ParkNewVehicleDto vehicle);
-        decimal Exit(string licensePlate);
+        Result<(decimal charges, decimal discount)> GetCurrentAccumulatedCharge(string licensePlate);
+        Result Park(ParkNewVehicleDto vehicle);
+        Result<decimal> Exit(string licensePlate);
     }
 }
