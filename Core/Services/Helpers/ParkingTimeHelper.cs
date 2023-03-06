@@ -13,7 +13,7 @@
             return ((int)Math.Ceiling(dailyStayTimeSpan.TotalHours), (int)Math.Ceiling(nightStayTimeSpan.TotalHours));
         }
 
-        private static TimeSpan GetDailyStay(DateTime parkTime, DateTime leaveTime, TimeSpan dailyHourStart, TimeSpan overnightHourStart)
+        public static TimeSpan GetDailyStay(DateTime parkTime, DateTime leaveTime, TimeSpan dailyHourStart, TimeSpan overnightHourStart)
         {
             if (parkTime == leaveTime)
             {

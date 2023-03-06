@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PharmaLex.ParkingLot", "PharmaLex.ParkingLot\PharmaLex.ParkingLot.csproj", "{A9D7A3A6-086D-4241-8142-961E21818FB0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{519D535A-790A-4F14-B923-0796E7252B96}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{A9D7A3A6-086D-4241-8142-961E21818FB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9D7A3A6-086D-4241-8142-961E21818FB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9D7A3A6-086D-4241-8142-961E21818FB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{519D535A-790A-4F14-B923-0796E7252B96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{519D535A-790A-4F14-B923-0796E7252B96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{519D535A-790A-4F14-B923-0796E7252B96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{519D535A-790A-4F14-B923-0796E7252B96}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
